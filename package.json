@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test --project=chrome --debug"
+    "test": "npx playwright test --project=chrome"
   },
   "keywords": [],
   "author": "",
