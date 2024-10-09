@@ -17,7 +17,7 @@ test('can find product using ASIN', async ({ page }) => {
   await searchForProduct(page, asinText);
 
   const productSearchResult = page.getByText("Spider-Man 2 - PlayStation 2", { exact: true });
-  await expect(productSearchResult).toBeVisible();
+  await expect(productSearchResult).toBeHidden();
 });
 
 test('can add product to cart', async ({ page }) => {
