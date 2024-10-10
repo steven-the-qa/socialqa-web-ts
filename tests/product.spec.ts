@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 test('has the correct product title', async ({ page }) => {
   const productTitle = page.getByTestId("title");
 
-  await expect(productTitle).toHaveText("Spider-Man  - PlayStation 2");
+  await expect(productTitle).toHaveText("Spider-Man 2 - PlayStation 2");
 });
 
 test('can find product using ASIN', async ({ page }) => {
