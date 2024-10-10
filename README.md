@@ -1,1 +1,0 @@
-# socialqa-web-ts

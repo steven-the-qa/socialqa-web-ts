@@ -1,9 +1,10 @@
 name: Playwright Tests
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # This enables manual triggering
+
 jobs:
   test:
-    timeout-minutes: 10
+    timeout-minutes: 5  # Changed from 10 to 5 minutes
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -12,9 +13,9 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
-    - name: Install Playwright Browsers & Dependencies
+    - name: Install Playwright Chrome
       run: npx playwright install chromium --with-deps
-    - name: Run Playwright tests
+    - name: Run Playwright tests on Chrome
       run: npm run test
     - uses: actions/upload-artifact@v4
       if: always()
@@ -25,6 +26,6 @@ jobs:
     - uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: screenshots
-        path: screenshots/
+        name: traces
+        path: test-results/**/trace.zip
         retention-days: 5
