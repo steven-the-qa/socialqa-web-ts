@@ -27,5 +27,5 @@ jobs:
       if: always()
       with:
         name: traces
-        path: test-results/**/trace.zip
+        path: test-results/
         retention-days: 5
