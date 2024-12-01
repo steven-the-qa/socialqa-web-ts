@@ -1,7 +1,7 @@
 # Web Automation Project
 
 ## Demo
-[A demo video will be added here once available]
+https://github.com/user-attachments/assets/93a03329-f4de-465a-8e7d-560668f8f065
 
 ## Tests
 - Product title verification
