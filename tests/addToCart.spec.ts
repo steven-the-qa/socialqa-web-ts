@@ -1,14 +1,18 @@
 import { expect, test } from "@playwright/test";
+import { navigateToAmazon, getRandomDelay } from "./utils";
 
-test('can add product to cart', async ({ page }) => {
+test.describe('Cart tests', () => {
+  test.describe.configure({ mode: 'serial' });
+  
+  test('can add product to cart', async ({ page }) => {
     test.step("Navigate to product page", async () => {
-        await page.goto('https://a.co/d/b8ykbVV', { waitUntil: "commit" });
-        await page.waitForTimeout(1000);
+        await navigateToAmazon(page, 'spiderman2');
     })
 
     // Add product to cart
     const addToCart = page.getByTestId("add-to-cart-button");
     await expect(addToCart).toBeVisible();
+    await page.waitForTimeout(getRandomDelay(1000, 2000));
     await addToCart.click({force: true});
   
     // Verify cart count
@@ -32,4 +36,5 @@ test('can add product to cart', async ({ page }) => {
     // Verify the sign in URL
     await expect(page).toHaveURL(/.*signin.*/);
   });
+});
   

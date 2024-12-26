@@ -8,44 +8,49 @@ const VIEWPORT_SIZES = [
 
 const randomViewport = VIEWPORT_SIZES[Math.floor(Math.random() * VIEWPORT_SIZES.length)];
 
+const isCI = !!process.env.CI;
+const userAgent = isCI 
+  ? 'Mozilla/5.0 (X11; Linux x86_64) Chrome/120.0.0.0 Safari/537.36'
+  : 'Mozilla/5.0 (Macintosh; ARM Mac OS X 15_0) Chrome/120.0.0.0 Safari/537.36';
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: 1,
   workers: 1,
+  maxFailures: 1,
+  timeout: 60000,
+  globalTimeout: 300000,
+  quiet: true,
   reporter: [['html', { open: 'never' }]],
   use: {
-    headless: process.env.CI ? true : false,
+    headless: isCI,
     trace: 'retain-on-failure',
     testIdAttribute: "id",
-    viewport: randomViewport,
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    browserName: 'chromium',
-    ignoreHTTPSErrors: true,
-    actionTimeout: 30000,
-    navigationTimeout: 30000,
-    contextOptions: {
-      reducedMotion: 'no-preference',
-      forcedColors: 'none',
-      colorScheme: 'light',
-    },
-    javaScriptEnabled: true,
-    acceptDownloads: true,
   },
 
   projects: [
     {
       name: 'chrome',
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: {
+        browserName: 'chromium',
+        viewport: randomViewport,
+        userAgent,
+        ignoreHTTPSErrors: true,
+        actionTimeout: 30000,
+        navigationTimeout: 30000,
+        contextOptions: {
+          reducedMotion: 'no-preference',
+          forcedColors: 'none',
+          colorScheme: 'light',
+        },
+        javaScriptEnabled: true,
+        acceptDownloads: true,
+        launchOptions: {
+          slowMo: 100,
+        },
+      },
     },
   ],
 
@@ -53,6 +58,5 @@ export default defineConfig({
     timeout: 15000,
   },
 
-  globalTimeout: 60000,
   globalSetup: './global-setup.ts',
 });

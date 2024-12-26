@@ -25,8 +25,7 @@ function getRandomUrl(productKey: string): string {
     return variants[Math.floor(Math.random() * variants.length)];
 }
 
-// Add randomization to delays
-function getRandomDelay(min: number, max: number) {
+export function getRandomDelay(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 

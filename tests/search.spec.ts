@@ -1,10 +1,12 @@
 import { expect, test } from "@playwright/test";
-import { searchForProduct } from "./utils";
+import { searchForProduct, navigateToAmazon } from "./utils";
 
-test('can find product using ASIN', async ({ page }) => {
+test.describe('Search tests', () => {
+  test.describe.configure({ mode: 'serial' });
+  
+  test('can find product using ASIN', async ({ page }) => {
     test.step("Navigate to product page", async () => {
-        await page.goto('https://a.co/d/b8ykbVV', { waitUntil: "commit" });
-        await page.waitForTimeout(1000);
+        await navigateToAmazon(page, 'spiderman2');
     })
 
     const asin = page.getByTestId("productDetails_detailBullets_sections1").getByText("ASIN").locator("xpath=following-sibling::*");
@@ -14,3 +16,4 @@ test('can find product using ASIN', async ({ page }) => {
     const productSearchResult = page.getByText("Spider-Man 2", { exact: true });
     await expect(productSearchResult).toBeVisible();
   });
+});
