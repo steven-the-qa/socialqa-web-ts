@@ -10,7 +10,7 @@ test('has the correct product title', async ({ page }) => {
     await page.setContent('<div id="title">Spider-Man 2</div>');
   } else {
     await test.step("Navigate to product page", async () => {
-      await navigateToAmazon(page, 'https://a.co/d/b8ykbVV');
+      await navigateToAmazon(page, 'spiderman2');
     });
   }
 
