@@ -5,10 +5,10 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  workers: 1,
+  reporter: [['html', { open: 'never' }]],
   use: {
-    headless: true,
+    headless: false,
     trace: 'retain-on-failure',
     testIdAttribute: "id",
   },
