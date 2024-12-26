@@ -8,7 +8,7 @@ export default defineConfig({
   workers: 1,
   reporter: [['html', { open: 'never' }]],
   use: {
-    headless: false,
+    headless: process.env.CI ? true : false,
     trace: 'retain-on-failure',
     testIdAttribute: "id",
   },
