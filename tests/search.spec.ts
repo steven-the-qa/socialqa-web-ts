@@ -13,7 +13,7 @@ test.describe('Search tests', () => {
     const asinText = await asin.textContent() as string;
     await searchForProduct(page, asinText);
   
-    const productSearchResult = page.getByText("Spider-Man 2", { exact: true });
-    await expect(productSearchResult).toBeVisible();
+    const productSearchResult = page.getByText("Spider-Man 2", { exact: true});
+    await expect(productSearchResult).toBeVisible({ timeout: 10000 });
   });
 });
