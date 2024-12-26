@@ -4,6 +4,7 @@ import { searchForProduct } from "./utils";
 test('can find product using ASIN', async ({ page }) => {
     test.step("Navigate to product page", async () => {
         await page.goto('https://a.co/d/b8ykbVV', { waitUntil: "commit" });
+        await page.waitForTimeout(1000);
     })
 
     const asin = page.getByTestId("productDetails_detailBullets_sections1").getByText("ASIN").locator("xpath=following-sibling::*");

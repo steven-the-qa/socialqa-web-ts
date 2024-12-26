@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 test('can add product to cart', async ({ page }) => {
     test.step("Navigate to product page", async () => {
         await page.goto('https://a.co/d/b8ykbVV', { waitUntil: "commit" });
+        await page.waitForTimeout(1000);
     })
 
     // Add product to cart

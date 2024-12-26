@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 test('has the correct product title', async ({ page }) => {
   test.step("Navigate to product page", async () => {
     await page.goto('https://a.co/d/b8ykbVV', { waitUntil: "commit" });
+    await page.waitForTimeout(1000);
   })
 
   const productTitle = page.getByTestId("title");
