@@ -1,8 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-test.beforeEach(async ({ page }) => {
-  })
-
 test('can add product to cart', async ({ page }) => {
     test.step("Navigate to product page", async () => {
         await page.goto('https://a.co/d/b8ykbVV', { waitUntil: "commit" });
