@@ -7,7 +7,7 @@ test.describe('Product tests', () => {
       await navigateToAmazon(page, 'spiderman2');
     });
 
-    const productTitle = page.getByTestId("title");
+    const productTitle = page.getByTestId("titlePENGUIN");
     await expect(productTitle).toHaveText("Spider-Man 2");
   });
 });
